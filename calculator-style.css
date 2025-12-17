@@ -1,0 +1,741 @@
+/* ============================================
+   PREMIUM CALCULATOR CSS STYLESHEET
+   Dark & Light Themes | Animations | Responsive Design
+   ============================================ */
+
+/* ============================================
+   ROOT VARIABLES - THEME COLORS
+   ============================================ */
+
+:root {
+  /* Light Theme Colors */
+  --light-bg: #ffffff;
+  --light-bg-secondary: #f5f5f5;
+  --light-text: #333333;
+  --light-text-secondary: #666666;
+  --light-border: #e0e0e0;
+  --light-shadow: rgba(0, 0, 0, 0.1);
+  
+  /* Dark Theme Colors */
+  --dark-bg: #1a1a1a;
+  --dark-bg-secondary: #2d2d2d;
+  --dark-text: #ffffff;
+  --dark-text-secondary: #b0b0b0;
+  --dark-border: #404040;
+  --dark-shadow: rgba(0, 0, 0, 0.3);
+  
+  /* Accent Colors */
+  --primary-accent: #4a90e2;
+  --secondary-accent: #50c878;
+  --warning-accent: #ff6b6b;
+  --danger-accent: #ff4444;
+  --info-accent: #00bcd4;
+  
+  /* Button Colors */
+  --btn-number-hover: #e8e8e8;
+  --btn-operator-hover: #ffcc66;
+  --btn-equals-hover: #45b049;
+  
+  /* Transition & Animation */
+  --transition-fast: 0.15s ease-in-out;
+  --transition-normal: 0.3s ease-in-out;
+  --transition-slow: 0.5s ease-in-out;
+  
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 50%;
+  
+  /* Font Sizes */
+  --font-xs: 12px;
+  --font-sm: 14px;
+  --font-base: 16px;
+  --font-lg: 18px;
+  --font-xl: 24px;
+  --font-2xl: 32px;
+  --font-3xl: 42px;
+}
+
+/* ============================================
+   GLOBAL STYLES
+   ============================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background-color: var(--light-bg);
+  color: var(--light-text);
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+  line-height: 1.6;
+}
+
+/* ============================================
+   DARK THEME CLASS
+   ============================================ */
+
+body.dark-theme {
+  background-color: var(--dark-bg);
+  color: var(--dark-text);
+}
+
+/* ============================================
+   CALCULATOR CONTAINER
+   ============================================ */
+
+.calculator-container {
+  max-width: 400px;
+  margin: var(--spacing-xl) auto;
+  padding: var(--spacing-lg);
+  background: linear-gradient(135deg, var(--light-bg) 0%, var(--light-bg-secondary) 100%);
+  border: 1px solid var(--light-border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 10px 40px var(--light-shadow);
+  animation: slideUp 0.6s ease-out;
+  transition: all var(--transition-normal);
+}
+
+body.dark-theme .calculator-container {
+  background: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-bg-secondary) 100%);
+  border-color: var(--dark-border);
+  box-shadow: 0 10px 40px var(--dark-shadow);
+}
+
+/* ============================================
+   HEADER / TITLE
+   ============================================ */
+
+.calculator-header {
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 2px solid var(--light-border);
+  transition: border-color var(--transition-normal);
+}
+
+body.dark-theme .calculator-header {
+  border-bottom-color: var(--dark-border);
+}
+
+.calculator-title {
+  font-size: var(--font-2xl);
+  font-weight: 700;
+  color: var(--primary-accent);
+  margin-bottom: var(--spacing-sm);
+  letter-spacing: 1px;
+}
+
+.calculator-subtitle {
+  font-size: var(--font-sm);
+  color: var(--light-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+body.dark-theme .calculator-subtitle {
+  color: var(--dark-text-secondary);
+}
+
+/* ============================================
+   DISPLAY SCREEN
+   ============================================ */
+
+.display-screen {
+  background: linear-gradient(180deg, var(--light-bg-secondary) 0%, var(--light-bg) 100%);
+  border: 2px solid var(--light-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  text-align: right;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: inset 0 2px 8px var(--light-shadow);
+  transition: all var(--transition-normal);
+}
+
+body.dark-theme .display-screen {
+  background: linear-gradient(180deg, #383838 0%, #2d2d2d 100%);
+  border-color: var(--dark-border);
+  box-shadow: inset 0 2px 8px var(--dark-shadow);
+}
+
+.display-previous {
+  font-size: var(--font-sm);
+  color: var(--light-text-secondary);
+  min-height: 20px;
+  transition: color var(--transition-normal);
+}
+
+body.dark-theme .display-previous {
+  color: var(--dark-text-secondary);
+}
+
+.display-current {
+  font-size: var(--font-3xl);
+  font-weight: 600;
+  color: var(--primary-accent);
+  word-wrap: break-word;
+  word-break: break-all;
+  min-height: 45px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  animation: displayUpdate 0.2s ease-out;
+}
+
+/* ============================================
+   BUTTONS GRID
+   ============================================ */
+
+.buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+/* ============================================
+   BUTTON STYLES - BASE
+   ============================================ */
+
+button {
+  padding: var(--spacing-md);
+  font-size: var(--font-lg);
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+}
+
+/* ============================================
+   NUMBER BUTTONS
+   ============================================ */
+
+.btn-number {
+  background-color: var(--light-bg-secondary);
+  color: var(--light-text);
+  border: 1px solid var(--light-border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+body.dark-theme .btn-number {
+  background-color: var(--dark-bg-secondary);
+  color: var(--dark-text);
+  border-color: var(--dark-border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-number:hover {
+  background-color: var(--btn-number-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-theme .btn-number:hover {
+  background-color: #3d3d3d;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.btn-number:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================
+   OPERATOR BUTTONS
+   ============================================ */
+
+.btn-operator {
+  background: linear-gradient(135deg, #ffb800 0%, #ffa500 100%);
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
+}
+
+body.dark-theme .btn-operator {
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.4);
+}
+
+.btn-operator:hover {
+  background: linear-gradient(135deg, #ffc700 0%, #ffb700 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 152, 0, 0.4);
+}
+
+.btn-operator:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(255, 152, 0, 0.2);
+}
+
+/* ============================================
+   EQUALS BUTTON
+   ============================================ */
+
+.btn-equals {
+  background: linear-gradient(135deg, #4caf50 0%, #45b049 100%);
+  color: #ffffff;
+  font-weight: 700;
+  grid-column: span 2;
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+body.dark-theme .btn-equals {
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+}
+
+.btn-equals:hover {
+  background: linear-gradient(135deg, #55d05f 0%, #4caf50 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(76, 175, 80, 0.4);
+}
+
+.btn-equals:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.2);
+}
+
+/* ============================================
+   CLEAR BUTTON
+   ============================================ */
+
+.btn-clear {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff5252 100%);
+  color: #ffffff;
+  font-weight: 700;
+  grid-column: span 2;
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+}
+
+body.dark-theme .btn-clear {
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+}
+
+.btn-clear:hover {
+  background: linear-gradient(135deg, #ff7a7a 0%, #ff6464 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 107, 107, 0.4);
+}
+
+.btn-clear:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(255, 107, 107, 0.2);
+}
+
+/* ============================================
+   DELETE/BACKSPACE BUTTON
+   ============================================ */
+
+.btn-delete {
+  background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
+}
+
+body.dark-theme .btn-delete {
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.4);
+}
+
+.btn-delete:hover {
+  background: linear-gradient(135deg, #ffaa10 0%, #ff9100 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 152, 0, 0.4);
+}
+
+.btn-delete:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(255, 152, 0, 0.2);
+}
+
+/* ============================================
+   DECIMAL BUTTON
+   ============================================ */
+
+.btn-decimal {
+  background: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 100%);
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(156, 39, 176, 0.3);
+}
+
+body.dark-theme .btn-decimal {
+  box-shadow: 0 4px 12px rgba(156, 39, 176, 0.4);
+}
+
+.btn-decimal:hover {
+  background: linear-gradient(135deg, #ab47bc 0%, #8e24aa 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(156, 39, 176, 0.4);
+}
+
+.btn-decimal:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(156, 39, 176, 0.2);
+}
+
+/* ============================================
+   RIPPLE EFFECT ON BUTTON CLICK
+   ============================================ */
+
+button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+button:active::after {
+  animation: ripple 0.6s ease-out;
+}
+
+/* ============================================
+   FOOTER / CONTROLS
+   ============================================ */
+
+.calculator-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--light-border);
+  transition: border-color var(--transition-normal);
+}
+
+body.dark-theme .calculator-footer {
+  border-top-color: var(--dark-border);
+}
+
+.calculator-controls {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+/* ============================================
+   THEME TOGGLE BUTTON
+   ============================================ */
+
+.btn-theme-toggle {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: var(--radius-full);
+  background: var(--light-bg-secondary);
+  color: var(--light-text);
+  border: 2px solid var(--light-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-lg);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+body.dark-theme .btn-theme-toggle {
+  background: var(--dark-bg-secondary);
+  color: var(--dark-text);
+  border-color: var(--dark-border);
+}
+
+.btn-theme-toggle:hover {
+  transform: scale(1.1) rotate(20deg);
+  border-color: var(--primary-accent);
+  color: var(--primary-accent);
+}
+
+.btn-theme-toggle:active {
+  transform: scale(0.95);
+}
+
+/* ============================================
+   CALCULATOR INFO / HISTORY INDICATOR
+   ============================================ */
+
+.calculator-info {
+  font-size: var(--font-xs);
+  color: var(--light-text-secondary);
+  transition: color var(--transition-normal);
+}
+
+body.dark-theme .calculator-info {
+  color: var(--dark-text-secondary);
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0.5;
+  }
+  100% {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+  }
+}
+
+@keyframes displayUpdate {
+  0% {
+    opacity: 0.8;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes buttonPress {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  50% {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+/* Tablets (768px and below) */
+@media (max-width: 768px) {
+  .calculator-container {
+    max-width: 100%;
+    margin: var(--spacing-md);
+    padding: var(--spacing-md);
+  }
+  
+  button {
+    min-height: 48px;
+    font-size: var(--font-base);
+  }
+  
+  .display-current {
+    font-size: var(--font-2xl);
+  }
+  
+  .calculator-title {
+    font-size: var(--font-xl);
+  }
+}
+
+/* Mobile devices (480px and below) */
+@media (max-width: 480px) {
+  .calculator-container {
+    max-width: 100%;
+    margin: var(--spacing-sm);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+  }
+  
+  button {
+    min-height: 44px;
+    padding: var(--spacing-sm) var(--spacing-xs);
+    font-size: var(--font-base);
+  }
+  
+  .display-current {
+    font-size: var(--font-xl);
+  }
+  
+  .display-screen {
+    min-height: 70px;
+    padding: var(--spacing-sm);
+  }
+  
+  .calculator-title {
+    font-size: var(--font-lg);
+  }
+  
+  .calculator-header {
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+  }
+  
+  .buttons-grid {
+    gap: var(--spacing-xs);
+  }
+}
+
+/* Small devices (320px and below) */
+@media (max-width: 320px) {
+  .calculator-container {
+    margin: var(--spacing-xs);
+    padding: var(--spacing-sm);
+  }
+  
+  button {
+    min-height: 40px;
+    padding: var(--spacing-xs);
+    font-size: var(--font-sm);
+  }
+  
+  .display-current {
+    font-size: var(--font-lg);
+  }
+  
+  .display-screen {
+    min-height: 60px;
+  }
+  
+  .calculator-title {
+    font-size: var(--font-base);
+  }
+}
+
+/* ============================================
+   FOCUS & ACCESSIBILITY
+   ============================================ */
+
+button:focus {
+  outline: 2px solid var(--primary-accent);
+  outline-offset: 2px;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--primary-accent);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+  .calculator-container {
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+  
+  .calculator-controls {
+    display: none;
+  }
+}
+
+/* ============================================
+   PREFERS REDUCED MOTION
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ============================================
+   DARK MODE SPECIFIC ENHANCEMENTS
+   ============================================ */
+
+body.dark-theme .btn-number:focus {
+  outline-color: var(--info-accent);
+}
+
+body.dark-theme button:focus {
+  outline-color: var(--info-accent);
+}
+
+/* ============================================
+   HIGH CONTRAST MODE
+   ============================================ */
+
+@media (prefers-contrast: more) {
+  .calculator-container {
+    border-width: 2px;
+  }
+  
+  button {
+    border-width: 2px;
+  }
+}
+
+/* ============================================
+   END OF CALCULATOR STYLESHEET
+   ============================================ */
