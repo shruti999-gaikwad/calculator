@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Calculator</title>
+    <link rel="stylesheet" href="calculator-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Animated Loader -->
+    <div class="loader" id="loader">
+        <div class="loader-spinner"></div>
+        <p>Initializing Calculator</p>
+    </div>
+
+    <div class="container">
+        <!-- Theme Toggle -->
+        <button class="theme-toggle" id="themeToggle" title="Toggle Theme">
+            <i class="fas fa-moon"></i>
+        </button>
+
+        <!-- Main Calculator Section -->
+        <div class="calculator-wrapper">
+            <!-- History Panel -->
+            <div class="history-panel" id="historyPanel">
+                <div class="history-header">
+                    <h3>History</h3>
+                    <button class="clear-history" id="clearHistory" title="Clear History">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+                <div class="history-list" id="historyList">
+                    <p class="empty-history">No calculations yet</p>
+                </div>
+            </div>
+
+            <!-- Calculator Display -->
+            <div class="calculator">
+                <div class="display-section">
+                    <div class="memory-indicator" id="memoryIndicator">M: 0</div>
+                    <input type="text" class="display" id="display" placeholder="0" readonly>
+                    <div class="expression-preview" id="expressionPreview"></div>
+                </div>
+
+                <!-- Memory Buttons -->
+                <div class="memory-buttons">
+                    <button class="mem-btn" id="memClear" title="Memory Clear">MC</button>
+                    <button class="mem-btn" id="memRecall" title="Memory Recall">MR</button>
+                    <button class="mem-btn" id="memAdd" title="Memory Add">M+</button>
+                    <button class="mem-btn" id="memSubtract" title="Memory Subtract">M-</button>
+                </div>
+
+                <!-- Calculator Buttons Grid -->
+                <div class="buttons-grid">
+                    <!-- Row 1: Clear and Delete -->
+                    <button class="btn clear-all-btn" id="clearAllBtn">AC</button>
+                    <button class="btn delete-btn" id="deleteBtn" title="Delete Last">
+                        <i class="fas fa-backspace"></i>
+                    </button>
+                    <button class="btn operator-btn" data-operator="%">%</button>
+                    <button class="btn operator-btn" data-operator="/">÷</button>
+
+                    <!-- Row 2: Numbers 7-9 and Multiply -->
+                    <button class="btn number-btn" data-number="7">7</button>
+                    <button class="btn number-btn" data-number="8">8</button>
+                    <button class="btn number-btn" data-number="9">9</button>
+                    <button class="btn operator-btn" data-operator="*">×</button>
+
+                    <!-- Row 3: Numbers 4-6 and Minus -->
+                    <button class="btn number-btn" data-number="4">4</button>
+                    <button class="btn number-btn" data-number="5">5</button>
+                    <button class="btn number-btn" data-number="6">6</button>
+                    <button class="btn operator-btn" data-operator="-">−</button>
+
+                    <!-- Row 4: Numbers 1-3 and Plus -->
+                    <button class="btn number-btn" data-number="1">1</button>
+                    <button class="btn number-btn" data-number="2">2</button>
+                    <button class="btn number-btn" data-number="3">3</button>
+                    <button class="btn operator-btn" data-operator="+">+</button>
+
+                    <!-- Row 5: Zero, Decimal and Equals -->
+                    <button class="btn number-btn zero-btn" data-number="0">0</button>
+                    <button class="btn operator-btn" data-operator=".">.</button>
+                    <button class="btn equals-btn" id="equalsBtn">=</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="calculator-script.js"></script>
+</body>
+</html>
